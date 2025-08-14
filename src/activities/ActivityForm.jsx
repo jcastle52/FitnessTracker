@@ -8,10 +8,11 @@ export default function ActivityForm({ token }) {
     const description = formData.get("description");
     mutate({ name, description });
   };
-  if (error) return <h1>{error}</h1>;
   if (loading) return <h1>Loading...</h1>;
   if (token) {
     return (
+      <>
+      {error ? <h3>{error}</h3> : <></>}
       <form action={addActivity}>
         <label>
           Activity Name
@@ -22,8 +23,8 @@ export default function ActivityForm({ token }) {
           <input type="text" name="description" required />
         </label>
         <button>Add</button>
-        {error && <output>{error}</output>}
       </form>
+      </>
     );
   }
 }
